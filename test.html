@@ -1,0 +1,51 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>ORS planinarska ruta</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css" />
+  <style>
+    #map { height: 100vh; }
+  </style>
+</head>
+<body>
+<div id="map"></div>
+
+<!-- Ispravan redoslijed skripti -->
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.min.js"></script>
+<script src="https://unpkg.com/lrm-openrouteservice@1.0.5/dist/lrm-openrouteservice.min.js"></script>
+
+<script>
+  const map = L.map('map').setView([45.077, 14.6], 11);
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap contributors'
+  }).addTo(map);
+
+  const waypoints = [
+    L.latLng(45.21284, 14.55371),
+    L.latLng(45.12353, 14.49353),
+    L.latLng(45.09128, 14.43428)
+  ];
+
+  L.Routing.control({
+    waypoints: waypoints,
+    router: new L.Routing.OpenRouteService({
+      apiKey: '5b3ce3597851110001cf62486050e6b2f3e84ad4aa0ed552152243a0',
+      profile: 'foot-hiking',
+      language: 'hr'
+    }),
+    routeWhileDragging: false,
+    showAlternatives: false,
+    fitSelectedRoutes: true,
+    createMarker: function(i, wp) {
+      return L.marker(wp.latLng).bindTooltip("Točka " + (i + 1));
+    }
+  }).addTo(map);
+</script>
+</body>
+</html>

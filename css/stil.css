@@ -1,0 +1,7 @@
+div:where(.swal2-container) div:where(.swal2-html-container){
+    text-align: justify
+}
+
+
+.swal2-container figcaption{text-align: center;}
+.swal2-container img {display: block;margin: auto;}

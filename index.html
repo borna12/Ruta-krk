@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Planinarska ruta s popupovima i rutom</title>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css" />
+  <style>
+    #map { height: 100vh; }
+    .leaflet-routing-container { display: none; } /* skriva routing panel */
+  </style>
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.min.js"></script>
+  <script src="https://unpkg.com/@gegeweb/leaflet-routing-machine-openroute@0.1.10/dist/leaflet-routing-openroute.min.js"></script>
+</head>
+<body>
+<div id="map"></div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/stil.css" />
+
+
+<script>
+const map = L.map('map').setView([45.077, 14.6], 11);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: '&copy; OpenStreetMap contributors'
+}).addTo(map);
+
+// Točke s opisima
+const points = [
+  {name: "Župna crkva Uznesenja Blažene Djevice Marije", lat: 45.21284, lon: 14.55371, desc: '<p>Omišalj je mjesto nekoliko glagoljičnih spomenika. Župna crkva Uznesenja Blažene Djevice Marije, trobrodna romanička crkva s prijelaza iz 12. u 13. st. mjesto je nekoliko glagoljičnih natpisa koji svjedoče o gradnji pojedinih njezinih dijelova. Na renesansnome zvoniku dovršenome 1536. godine također je glagoljični natpis. </p><p>U Omišlju se nalazi i lapidarij  u kojemu su i neki glagoljični natpisi. Ističe se nadgrobna ploča s glagoljičnim natpisom i reljefnim prikazom znakova opatske časti iz 1477.</p><figure><img alt="Glagoljični natpis o gradnji Kaštela u Omišlju"src=slike/omisalj-1.jpg><figcaption>Glagoljični natpis o gradnji Kaštela u Omišlju</figcaption></figure><figure><img alt="Glagoljični natpisi u Omišlju"src=slike/omisalj-2.jpg> <img alt="Glagoljični natpisi u Omišlju"src=slike/omisalj-3.jpg><figcaption>Glagoljični natpisi u Omišlju</figcaption></figure><figure><img alt="Rozeta župne crkve s glagoljičnim natpisom"src=slike/omisalj-4.jpg><figcaption>Rozeta župne crkve s glagoljičnim natpisom</figcaption></figure>'},
+  {name: "Samostan sv. Marije Magdalene u Poratu", lat: 45.12353, lon: 14.49353, desc: "<p>U Portu se nalazi franjevački Samostan sv. Marije Magdalene, čija knjižnica čuva niz glagoljičnih rukopisa iz 17. i 18. stoljeća. U otvorenome predvorju nalazi se glagoljični lapidarij koji je osmislio Dubašljanin Branko Fučić, jedan od najpoznatijih proučavatelja hrvatskoga glagoljaštva. Ispred samostana postavljena je njegova bista. Lapidarij sadržava 14 odljeva najvažnijih i najpoznatijih glagoljičnih epigrafskih spomenika.</p><figure><img alt='Lapidarij u Samostanu sv. Marije Magdalene u Portu' src=slike/porat-1.jpg><figcaption>Lapidarij u Samostanu sv. Marije Magdalene u Portu</figcaption></figure><figure><img alt='Bista Branka Fučića' src=slike/porat-2.jpg><figcaption>Bista Branka Fučića</figcaption></figure>"},
+  {name: "Samostan sv. Marije u Glavotoku", lat: 45.09128, lon: 14.43428, desc: "<p>U Glavotoku se nalazi Samostan sv. Marije, samostan franjevaca trećoredaca. U samostanu se čuvao i jedan primjerak <em>Prvotiska</em>, koji se danas čuva u Zagrebu, u samostanu na Ksaveru. Na samostanu se nalazi sunčani sat koji je izradio važan hrvatski glagoljaš Dragutin Antun Parčić. U samostanu je bila i Parčićeva tiskara.</p><figure><img alt='Samostan sv. Marije u Glavotoku' src=slike/glavotoku-1.jpg><br><img alt='Samostan sv. Marije u Glavotoku' src=slike/glavotoku-2.jpg><figcaption>Samostan sv. Marije u Glavotoku</figcaption></figure><figure>"},
+  {name: "Krčki natpis - kanonička kuća", lat: 45.02657, lon: 14.57521, desc: "Natpis u stubištu."},
+  {name: "Otok Košljun", lat: 45.02605, lon: 14.61945, desc: "Franjevački samostan na otoku."},
+  {name: "Crkva sv. Lucije u Jurandvoru", lat: 44.97791, lon: 14.73826, desc: "Mjesto Bašćanske ploče."},
+  {name: "Slovo A", lat: 45.03275, lon: 14.67963, desc: "Bašćanska dolina – slovo A."},
+  {name: "Slovo L", lat: 44.98429, lon: 14.72705, desc: "Bašćanska dolina – slovo L."},
+  {name: "Slovo Z", lat: 44.96163, lon: 14.74718, desc: "Bašćanska dolina – slovo Z."},
+  {name: "Slovo Š", lat: 44.96985, lon: 14.76771, desc: "Bašćanska dolina – slovo Š."},
+  {name: "Crkva BDM Vrbnik", lat: 45.07760, lon: 14.67461, desc: "Vrbnička župna crkva."},
+  {name: "Kip Blaža Baromića", lat: 45.07705, lon: 14.67757, desc: "Spomenik glagoljašu."},
+  {name: "Crkva sv. Vida", lat: 45.12602, lon: 14.61343, desc: "Crkva u Dobrinju."},
+  {name: "Klimno", lat: 45.15530, lon: 14.62025, desc: "Mjesto uz more."},
+  {name: "Park glagoljice", lat: 45.12800, lon: 14.56167, desc: "Park kod Gabonjina."},
+  {name: "Put glagoljaša", lat: 45.10781, lon: 14.56347, desc: "Tematski planinarski put."}
+];
+
+// Dodavanje markera s popupovima
+const waypoints = [];
+points.forEach(p => {
+  const marker = L.marker([p.lat, p.lon], { title: p.name }).addTo(map);
+  marker.bindTooltip(p.name, { permanent: false, direction: 'top' });
+
+  marker.on('click', function () {
+    Swal.fire({
+      title: p.name,
+      html: p.desc,
+      width: '600px',
+      confirmButtonText: 'Zatvori'
+    });
+  });
+
+  waypoints.push(L.latLng(p.lat, p.lon));
+});
+
+// Dodavanje rute s "foot" profilom (planinarski)
+L.Routing.control({
+  waypoints: waypoints,
+ router: new L.Routing.OpenRouteService({
+  apiKey: '5b3ce3597851110001cf62486050e6b2f3e84ad4aa0ed552152243a0',
+  profile: 'foot-hiking',
+  language: 'hr'
+}),
+  addWaypoints: false,
+  routeWhileDragging: false,
+  draggableWaypoints: false,
+  fitSelectedRoutes: true,
+  createMarker: () => null
+}).addTo(map);
+</script>
+</body>
+</html>
