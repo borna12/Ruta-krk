@@ -28,14 +28,16 @@
 <script>
 const map = L.map('map').setView([45.077, 14.6], 11);
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  attribution: '&copy; OpenStreetMap contributors'
+  attribution: ' <a href="https://stin.hr/" target="_blank"><img src="https://stin.hr/wp-content/uploads/2021/02/cropped-zaposlenici-18-192x192.png" alt="Staroslavenski institut" style="height: 14px; vertical-align: middle;"> Staroslavenski institut</a>'
 }).addTo(map);
+map.attributionControl.setPrefix('Leaflet | © <a href="https://www.openstreetmap.org/" target="_blank">OpenStreetMap</a>');
+
 const RouteSelectorControl = L.Control.extend({
   onAdd: function(map) {
     const div = L.DomUtil.create('div', 'leaflet-control route-select');
     div.innerHTML = `
       <select id="routeSelector">
-        <option value="ruta-planinarenje.gpx">Planinarenje</option>
+        <option value="ruta-planinarenje.gpx">Pješke</option>
         <option value="ruta-bicikl.gpx">Bicikl</option>
         <option value="ruta-auto.gpx">Auto</option>
       </select>
