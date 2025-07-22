@@ -15,12 +15,9 @@
 
 </head>
 <body>
- <select id="routeSelector">
-  <option value="ruta-planinarenje.gpx">Planinarenje</option>
-<option value="ruta-bicikl.gpx">Bicikl</option>
-<option value="ruta-auto.gpx">Auto</option>
-</select>
+
 <div id="map"></div>
+<div id="route-info" class="leaflet-control route-info"></div>
 
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -33,7 +30,21 @@ const map = L.map('map').setView([45.077, 14.6], 11);
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
-
+const RouteSelectorControl = L.Control.extend({
+  onAdd: function(map) {
+    const div = L.DomUtil.create('div', 'leaflet-control route-select');
+    div.innerHTML = `
+      <select id="routeSelector">
+        <option value="ruta-planinarenje.gpx">Planinarenje</option>
+        <option value="ruta-bicikl.gpx">Bicikl</option>
+        <option value="ruta-auto.gpx">Auto</option>
+      </select>
+    `;
+    L.DomEvent.disableClickPropagation(div);
+    return div;
+  }
+});
+map.addControl(new RouteSelectorControl({ position: 'topright' }));
 // Točke s opisima
 const points = [
   {name: "Župna crkva Uznesenja Blažene Djevice Marije", lat: 45.21284, lon: 14.55371, desc: '<p>Omišalj je mjesto nekoliko glagoljičnih spomenika. Župna crkva Uznesenja Blažene Djevice Marije, trobrodna romanička crkva s prijelaza iz 12. u 13. st. mjesto je nekoliko glagoljičnih natpisa koji svjedoče o gradnji pojedinih njezinih dijelova. Na renesansnome zvoniku dovršenome 1536. godine također je glagoljični natpis. </p><p>U Omišlju se nalazi i lapidarij  u kojemu su i neki glagoljični natpisi. Ističe se nadgrobna ploča s glagoljičnim natpisom i reljefnim prikazom znakova opatske časti iz 1477.</p><figure><img alt="Glagoljični natpis o gradnji Kaštela u Omišlju"src=slike/omisalj-1.jpg><figcaption>Glagoljični natpis o gradnji Kaštela u Omišlju</figcaption></figure><figure><img alt="Glagoljični natpisi u Omišlju"src=slike/omisalj-2.jpg> <img alt="Glagoljični natpisi u Omišlju"src=slike/omisalj-3.jpg><figcaption>Glagoljični natpisi u Omišlju</figcaption></figure><figure><img alt="Rozeta župne crkve s glagoljičnim natpisom"src=slike/omisalj-4.jpg><figcaption>Rozeta župne crkve s glagoljičnim natpisom</figcaption></figure>'},
@@ -104,9 +115,19 @@ function loadGpx(file) {
     map.fitBounds(e.target.getBounds());
   }).addTo(map);
 }
+function updateRouteInfo(selected) {
+  const info = {
+    "ruta-planinarenje.gpx": "Duljina rute: 127 km, Vrijeme: 38 h",
+    "ruta-bicikl.gpx": "Duljina rute: 117 km, Vrijeme: 8:30 h",
+    "ruta-auto.gpx": "Duljina rute: 133 km, Vrijeme: 3:30 h"
+  };
+  document.getElementById("route-info").textContent = info[selected] || "";
+}
 
 // Pokretanje prve (defaultne) rute
 loadGpx("ruta-planinarenje.gpx");
+
+
 
 // Reakcija na promjenu izbornika
 document.getElementById("routeSelector").addEventListener("change", function() {
@@ -115,10 +136,13 @@ document.getElementById("routeSelector").addEventListener("change", function() {
     map.removeControl(window.autoRoute);
     window.autoRoute = null;
   }
-  loadGpx(this.value);
+  const selected = this.value;
+loadGpx(selected);
+updateRouteInfo(selected);
 
 });
 
+updateRouteInfo("ruta-planinarenje.gpx");
 
 </script>
 </body>
