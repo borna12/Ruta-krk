@@ -4,8 +4,8 @@ div:where(.swal2-container) div:where(.swal2-html-container){
 
 
 .swal2-container figcaption{text-align: center;}
-.swal2-container img {display: block;margin: auto;}
-
+.swal2-container img {display: block;margin: auto;    max-width: 100%;}
+.swal2-modal .swal2-content{text-align: justify}
 .leaflet-top.leaflet-left .leaflet-control.route-select {
   margin-top: 10px;
   margin-left: 10px;
