@@ -54,3 +54,21 @@ html, body {
   height: 100%;
   width: 100%;
 }
+  body {
+    height: 100%;
+    overflow: hidden;
+  }
+
+  body.swal2-shown,
+  html.swal2-shown {
+    height: 100% !important;
+    overflow: hidden !important;
+  }
+
+  body.swal2-height-auto {
+    height: 100% !important;
+  }
+
+  .swal2-container {
+    height: 100% !important;
+  }
