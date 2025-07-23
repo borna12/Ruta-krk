@@ -34,6 +34,7 @@
 
 <script>
 const map = L.map('map').setView([45.077, 14.6], 11);
+
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   attribution: ' <a href="https://stin.hr/" target="_blank"><img src="https://stin.hr/wp-content/uploads/2021/02/cropped-zaposlenici-18-192x192.png" alt="Staroslavenski institut" style="height: 14px; vertical-align: middle;"> Staroslavenski institut</a>'
 }).addTo(map);
@@ -63,7 +64,7 @@ const points = [
   {name: "Otok Košljun", lat: 45.02605, lon: 14.61945, desc: "Košljun je otočić koji se nalazi ispred mjesta Punat. Premda otočić Košljun nije bio glagoljaški, na njemu se čuva primjerak <em>Prvotiska. </em>Na njemu se nalazi franjevački samostan.<br><figure><img alt='Otok Košljun' src=slike/kosljun-1.jpg><figcaption> Otočić Košljun – slika preuzeta sa stranice <a href='https://www.info-krk.com/krk/kultura/73/kosljun'>https://www.info-krk.com/krk/kultura/73/kosljun</a></figcaption></figure>"},
   {name: "Crkva sv. Lucije u Jurandvoru", lat: 44.97791, lon: 14.73826, desc: "<p>U mjestu Jurandvor, u crkvici sv. Lucije nalazila se <em>Bašćanska ploča </em>– najvažniji i jedan od najstarijih hrvatskoglagoljičnih epigrafskih spomenika. Pisana je prijelaznim tipom glagoljice s oble na uglatu. Služila je kao lijevi plutej u crkvenoj pregradi. Natpis ima 13 redova, počinje invokacijom, a zatim slijedi zapis popa Držihe o tome da je kralj Zvonimir darovao ledinu crkvi sv. Lucije. Navode se i svjedoci toga darivanja. Nakon toga opat Dobrovit svjedoči kako je s devetoro braće zidao crkvu u vrijeme kneza Kosmata. Na ploči se prvi put na hrvatskome jeziku spominje ime kralja Zvonimira i hrvatskoga naroda. Danas se <em>Bašćanska ploča</em> čuva u atriju Hrvatske akademije znanosti i umjetnosti u Zagrebu.</p><figure><img alt='Bašćanska ploča' src=slike/jurandvor-1.jpg><figcaption>Bašćanska ploča</figcaption></figure><figure><img alt='Crkvica sv. Lucije u Jurandvoru' src=slike/jurandvor-2.jpg><figcaption>Crkvica sv. Lucije u Jurandvoru</figcaption></figure><figure><img alt='Glagoljično slovo s u Jurandvoru' src=slike/jurandvor-3.jpg><figcaption>Glagoljično slovo <em>s </em>u Jurandvoru</figcaption></figure>"},
   {name: "Bašćanska staza glagoljice", lat: 44.96163, lon: 14.74718, desc: "Bašćanska staza glagoljice sastoji se od 34 spomenika od prijevoja Treskavac kroz Bašćansku dolinu. Izradu staze pokrenulo je Društvo Sinjali. Staza je otvorena 2009.<figure><img alt='Glagoljično slovo a'src=slike/bascanska-staza-1.jpg><figcaption>Glagoljično slovo <em>a</em></figcaption></figure><figure><img alt='Glagoljična slova ž i e'src=slike/bascanska-staza-2.jpg><figcaption>Glagoljična slova <em>ž </em>i <em>e</em></figcaption></figure><figure><img alt='Glagoljično slovo l'src=slike/bascanska-staza-3.jpg><figcaption>Glagoljično slovo <em>l</em></figcaption></figure><figure><img alt='Glagoljična slova k i d'src=slike/bascanska-staza-4.jpg><figcaption>Glagoljična slova <em>k </em>i <em>d</em></figcaption></figure><figure><img alt='Glagoljično slovo b'src=slike/bascanska-staza-5.jpg><figcaption>Glagoljično slovo <em>b</em></figcaption></figure><figure><img alt='Glagoljično slovo o'src=slike/bascanska-staza-6.jpg><figcaption>Glagoljično slovo <em>o</em></figcaption></figure><figure><img alt='Spomenik Društvu Sinjali'src=slike/bascanska-staza-7.jpg><figcaption>Spomenik Društvu Sinjali, koje je pokrenulo stazu</figcaption></figure><figure><img alt='Glagoljično slovo v'src=slike/bascanska-staza-8.jpg><figcaption>Glagoljično slovo <em>v</em></figcaption></figure><figure><img alt='Glagoljično slovo p'src=slike/bascanska-staza-9.jpg><figcaption>Glagoljično slovo <em>p</em></figcaption></figure><figure><img alt='Glagoljično slovo h'src=slike/bascanska-staza-10.jpg><figcaption>Glagoljično slovo <em>h</em></figcaption></figure><figure><img alt='Glagoljično slovo z'src=slike/bascanska-staza-11.jpg><figcaption>Glagoljično slovo <em>z</em></figcaption></figure><figure><img alt='Glagoljično slovo n'src=slike/bascanska-staza-12.jpg><figcaption>Glagoljično slovo <em>n</em></figcaption></figure><figure><img alt='Glagoljično slovo š'src=slike/bascanska-staza-13.jpg><figcaption>Glagoljično slovo <em>š</em></figcaption></figure>"},
-  {name: "Vrbnik", lat: 45.07704747366301, lon: 14.677571209700712, desc: "<p>U Vrbniku je više glagoljičnih natpisa, primjerice, na kapelici sv. Marije Male ili Blažene Djevice Marije od Porođenja uz župnu crkvu uznesenja Blažene Djevice Marije nalazi se glagoljični natpis iz 1505. o izgradnji crkve. U Vrbniku se nalazi i kip poznatoga glagoljaša Blaža Baromića . Godine 2003. otvorena je spomen-tiskara Blaža Baromića i Dragutina Parčića. U Župnome uredu nalaze se važni glagoljični rukopisi – primjerice, vrbnički misali i brevijari.</p><figure><img alt='Glagoljični natpisi u Vrbniku'src=slike/vrbnik-1.jpg><figcaption>Glagoljični natpisi u Vrbniku</figcaption></figure><figure><img alt='Glagoljični spomenici u Vrbniku'src=slike/vrbnik-2.jpg><br><img alt='Glagoljični spomenici u Vrbniku'src=slike/vrbnik-3.jpg><br><img alt='Glagoljični spomenici u Vrbniku'src=slike/vrbnik-4.jpg><br><img alt='Glagoljični spomenici u Vrbniku'src=slike/vrbnik-6.jpg><figcaption>Glagoljični spomenici u Vrbniku</figcaption></figure><figure><img alt='Blaž Baromić'src=slike/vrbnik-1.jpg><figcaption>Blaž Baromić</figcaption></figure>"},
+  {name: "Vrbnik", lat: 45.07704747366301, lon: 14.677571209700712, desc: "<p>U Vrbniku je više glagoljičnih natpisa, primjerice, na kapelici sv. Marije Male ili Blažene Djevice Marije od Porođenja uz župnu crkvu uznesenja Blažene Djevice Marije nalazi se glagoljični natpis iz 1505. o izgradnji crkve. U Vrbniku se nalazi i kip poznatoga glagoljaša Blaža Baromića . Godine 2003. otvorena je spomen-tiskara Blaža Baromića i Dragutina Parčića. U Župnome uredu nalaze se važni glagoljični rukopisi – primjerice, vrbnički misali i brevijari.</p><figure><img alt='Glagoljični natpisi u Vrbniku'src=slike/vrbnik-1.jpg><figcaption>Glagoljični natpisi u Vrbniku</figcaption></figure><figure><img alt='Glagoljični spomenici u Vrbniku'src=slike/vrbnik-2.jpg><br><img alt='Glagoljični spomenici u Vrbniku'src=slike/vrbnik-3.jpg><br><img alt='Glagoljični spomenici u Vrbniku'src=slike/vrbnik-4.jpg><br><img alt='Glagoljični spomenici u Vrbniku'src=slike/vrbnik-5.jpg><figcaption>Glagoljični spomenici u Vrbniku</figcaption></figure><figure><img alt='Blaž Baromić'src=slike/vrbnik-6.jpg><figcaption>Blaž Baromić</figcaption></figure>"},
   {name: "Dobrinj", lat: 45.12602, lon: 14.61343, desc: "U crkvi sv. Vida nema glagoljice, ali je s njom povezana glagoljična <em>Darovnica slavnoga Dragoslava</em>, jedan od najvažnijih starohrvatskih diplomatičkih zapisa, koji je napisan kurzivnom glagoljicom. Glagoljični se natpisi nalaze na župnoj crkvi sv. Stjepana i u gradu. Prvi prijepis <em>Darovnice</em> čuva se u sakralnoj muzejskoj zbirci u Dobrinju, koja je otvorena 1981.<figure><img alt='crkva sv. Vida 'src=slike/dobrinj-1.jpg><br><img alt='crkva sv. Vida'src=slike/dobrinj-2.jpg><figcaption>crkva sv. Vida</figcaption></figure><figure><img alt='Glagoljični natpis na župnoj crkvi sv. Stjepana u Dobrinju'src=slike/dobrinj-3.jpg><figcaption>Glagoljični natpis na župnoj crkvi sv. Stjepana u Dobrinju</figcaption></figure><figure><img alt='Glagoljični natpis u Dobrinju'src=slike/dobrinj-4.jpg><figcaption>Glagoljični natpis u Dobrinju</figcaption></figure><figure><img alt='Maskeron u Dobrinju'src=slike/dobrinj-5.jpg><figcaption>Maskeron u Dobrinju</figcaption></figure><figure><img alt='Naziv mjesta Dobrinj na glagoljici'src=slike/dobrinj-6.jpg><figcaption>Naziv mjesta Dobrinj na glagoljici</figcaption></figure>"},
   {name: "Klimno kod Solina ", lat: 45.15530, lon: 14.62025, desc: "<p>Blizu crkve sv. Klementa u Klimnu nalazi se glagoljični natpis s prezimenom obitelji Malatestinić i godinom.</p><figure><img alt='Glagoljični natpis u Klimnu'src=slike/solina-1.jpg><figcaption>Glagoljični natpis u Klimnu</figcaption></figure><br><figure><img alt='Mural u Klimnu'src=slike/solina-2.jpg><figcaption>Mural u Klimnu</figcaption></figure>"},
   {name: "Park glagoljice", lat: 45.12800, lon: 14.56167, desc: "<p>U Gabonjinu se od 2010. godine nalazi Park glagoljice, koji promovira glagoljičnu baštinu otoka Krka. Park se sastoji od 16 kamenih skulptura koje podsjećaju na važne događaje iz mjesne i nacionalne prošlosti i azbučna slova. Idejni je začetnik parka Svetko Ušalj (1937. – 2019.).</p><figure><img alt='Gabonjin slika 1'src=slike/gabonjin-1.jpg> <br><img alt='Gabonjin slika 2'src=slike/gabonjin-2.jpg> <br><img alt='Gabonjin slika 3'src=slike/gabonjin-3.jpg> <br><img alt='Gabonjin slika 4'src=slike/gabonjin-4.jpg> <br><img alt='Gabonjin slika 5'src=slike/gabonjin-5.jpg> <br><img alt='Gabonjin slika 6'src=slike/gabonjin-6.jpg> <br><img alt='Gabonjin slika 7'src=slike/gabonjin-7.jpg> <br><img alt='Gabonjin slika 8'src=slike/gabonjin-8.jpg><figcaption>Prikaz glagoljaških slova u Gabonjinu</figcaption></figure>"},
@@ -149,6 +150,41 @@ updateRouteInfo(selected);
 });
 
 updateRouteInfo("ruta-planinarenje.gpx");
+L.control.locate = function(opts) {
+  const options = opts || {};
+  const control = L.control({ position: 'topleft' });
+
+  control.onAdd = function(map) {
+    const container = L.DomUtil.create('div', 'leaflet-bar leaflet-control');
+    const button = L.DomUtil.create('a', '', container);
+    button.innerHTML = '📍';
+    button.href = '#';
+    button.title = 'Prikaži moju lokaciju';
+
+    L.DomEvent.on(button, 'click', function(e) {
+      L.DomEvent.stopPropagation(e);
+      L.DomEvent.preventDefault(e);
+
+      if (!navigator.geolocation) {
+        alert('Geolokacija nije podržana u ovom pregledniku.');
+        return;
+      }
+
+      navigator.geolocation.getCurrentPosition(function(position) {
+        const latlng = L.latLng(position.coords.latitude, position.coords.longitude);
+        L.marker(latlng).addTo(map).bindPopup('Vi ste ovdje!').openPopup();
+        map.setView(latlng, 14);
+      }, function() {
+        alert('Ne mogu dohvatiti vašu lokaciju.');
+      });
+    });
+
+    return container;
+  };
+
+  return control;
+};
+L.control.locate().addTo(map);
 
 </script>
 </body>
