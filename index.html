@@ -161,6 +161,14 @@ L.control.locate = function(opts) {
     button.href = '#';
     button.title = 'Prikaži moju lokaciju';
 
+    // Tvoja ikona čovječuljka
+    const userIcon = L.icon({
+      iconUrl: 'ikona.png',
+      iconSize: [32, 32],
+      iconAnchor: [16, 32],
+      popupAnchor: [0, -32]
+    });
+
     L.DomEvent.on(button, 'click', function(e) {
       L.DomEvent.stopPropagation(e);
       L.DomEvent.preventDefault(e);
@@ -172,10 +180,13 @@ L.control.locate = function(opts) {
 
       navigator.geolocation.getCurrentPosition(function(position) {
         const latlng = L.latLng(position.coords.latitude, position.coords.longitude);
-        L.marker(latlng).addTo(map).bindPopup('Vi ste ovdje!').openPopup();
+        L.marker(latlng, { icon: userIcon })
+          .addTo(map)
+          .bindPopup('Vi ste ovdje!')
+          .openPopup();
         map.setView(latlng, 14);
       }, function() {
-        alert('Ne mogu dohvatiti vašu lokaciju.');
+        alert('Ne mogu dohvatiti vašu lokaciju. Provjerite je li omogućen pristup lokaciji na uređaju ili pregledniku.');
       });
     });
 
