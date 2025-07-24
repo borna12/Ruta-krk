@@ -1,3 +1,20 @@
+@font-face {
+    font-family: 'FSGLA';
+    src: url('../fonts/FSGLAA.woff2') format('woff2'),
+        url('../fonts/FSGLAA.woff') format('woff'),
+        url('../fonts/FSGLAA.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+  #map { height: 100vh; }
+  .leaflet-routing-container { display: none; }
+
+.custom-icon {
+  border-radius: 50%;
+  border: 2px solid white;
+  box-shadow: 0 0 4px rgba(0,0,0,0.5);
+}
 div:where(.swal2-container) div:where(.swal2-html-container){
     text-align: justify
 }
